@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Day1_GrayCode {
-    List<Integer> sol=new ArrayList<>();
-
-    public List<Integer> grayCode(int n) {
+    static List<Integer> sol=new ArrayList<>();
+    public static void main(String [] args){
+        System.out.println(grayCode(6));
+    }
+    public static List<Integer> grayCode(int n) {
         if(n==1) {
             sol.add(0);
             sol.add(1);
