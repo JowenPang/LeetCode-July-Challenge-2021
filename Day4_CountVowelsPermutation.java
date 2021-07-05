@@ -7,6 +7,7 @@ public class Day4_CountVowelsPermutation {
         int sum=0;
         long [] [] dp=new long[n+1][5];
         //Let dp[i][j] be the number of strings of length i that ends with the j-th vowel.
+        //j =5 to store a,e,i,o,u
         for (int i = 0; i < dp[0].length; i++) {
             dp[1][i]=1;
         }
