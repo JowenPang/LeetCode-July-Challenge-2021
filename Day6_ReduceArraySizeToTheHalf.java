@@ -6,29 +6,17 @@ public class Day6_ReduceArraySizeToTheHalf {
         System.out.println(minSetSize(arr));
     }
     public static int minSetSize(int[] arr) {
-
         Map<Integer,Integer> mapCount=new HashMap<>();
         //key storing the value in array
         //value storing its occurence
+
         for (int element :arr) {
-            if(!mapCount.containsKey(element)){
-                mapCount.put(element,1);
-            }
-            else{
-                Integer cur=mapCount.get(element);
-                mapCount.put(element,cur+1);
-            }
+            mapCount.put(element,mapCount.getOrDefault(element,0)+1);
         }
 
-        //showing occurence of each value
-        System.out.println(mapCount);
+        System.out.println(mapCount);  //showing occurence for each value
 
-        LinkedList<Integer> occList=new LinkedList<>(); //use to store occurence only
-        Iterator itr=mapCount.keySet().iterator();
-        while (itr.hasNext()) {
-            Integer temp= mapCount.get(itr.next()); //get the  value of each key
-            occList.add(temp);
-        }
+        LinkedList<Integer> occList=new LinkedList<>(mapCount.values()); //convert hashmap collections of values into list
         Collections.sort(occList);
         System.out.println(occList);
         int count=0;
@@ -40,5 +28,32 @@ public class Day6_ReduceArraySizeToTheHalf {
             min+=1;
         }
         return min;
+
+
+
+
+
+        //Example using LinkedhashMap
+      /*  Map<Integer,Integer> mapCount2=new LinkedHashMap<>();
+        for (int element :arr) {
+            if(!mapCount2.containsKey(element)){
+                mapCount2.put(element,1);
+            }
+            else{
+                Integer cur=mapCount2.get(element);
+                mapCount2.put(element,cur+1);
+            }
+        }
+
+        System.out.println(mapCount2);*/
+
+        //example using treemap
+      /*  Map<Integer,Integer> mapCount3=new TreeMap<>();
+        for (int element :arr) {
+            mapCount3.put(element,mapCount3.getOrDefault(element,0)+1);
+        }
+        System.out.println(mapCount3);*/
+
+
     }
 }
