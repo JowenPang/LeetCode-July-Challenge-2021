@@ -14,11 +14,11 @@ public class Day6_ReduceArraySizeToTheHalf {
             mapCount.put(element,mapCount.getOrDefault(element,0)+1);
         }
 
-        System.out.println(mapCount);  //showing occurence for each value
+        //System.out.println(mapCount);
 
         LinkedList<Integer> occList=new LinkedList<>(mapCount.values()); //convert hashmap collections of values into list
         Collections.sort(occList);
-        System.out.println(occList);
+        //System.out.println(occList);
         int count=0;
         int min=0;
 
