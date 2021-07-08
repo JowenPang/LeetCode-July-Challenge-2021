@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Day7_KthSmallestElementInSortedArray {
 
     public static void main(String [] args){
@@ -10,23 +7,58 @@ public class Day7_KthSmallestElementInSortedArray {
         System.out.println(kthSmallest(mat2, 1));
     }
 
-    public static int kthSmallest(int[][] matrix, int k) { //similar to mergerSort
-        int [] count=new int[matrix.length]; //column index of smallest element in the row
-        int minIndex=0;
-        int result=0;
+    //my solution
+    //similar to mergerSort 24ms
+    public static int kthSmallest(int[][] matrix, int k) {
+        int [] colIndex =new int[matrix.length]; //column index of smallest element in the ith row which haven't been visited
+        int minIndex=0; //to store the row we need to update for count array
+        int min=0;
         while(k-->0) {
-            int min=Integer.MAX_VALUE;
+            min=Integer.MAX_VALUE;
             for (int i = 0; i < matrix.length; i++) {
-                if (count[i] == matrix[0].length) //skip for those already completely add into list
+                if (colIndex[i] == matrix[0].length) //skip for those already visited till the end of row
                     continue;
-                if (matrix[i][count[i]] < min) {
-                    min = matrix[i][count[i]];
+                if (matrix[i][colIndex[i]] < min) {
+                    min = matrix[i][colIndex[i]];
                     minIndex = i;
                 }
             }
-            result=min;
-            count[minIndex]+=1;
+            colIndex[minIndex]+=1; //update the column index for the specific row
         }
-        return result;
+        return min; //the last min updated is the kth value
     }
+
+
+
+   /* public static int kthSmallest(int[][] matrix, int k) { //others : Oms solution
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int l = matrix[0][0];
+        int r = matrix[row-1][col-1];
+        while(l <= r) {
+            int mid = l+(r-l)/2;
+            if(check(matrix, mid, k, col)) {
+                r = mid -1;
+            } else {
+                l = mid+1;
+            }
+        }
+        return l;
+    }
+
+    private static boolean check(int[][] matrix, int mid, int k, int n) {
+        int i = n - 1;
+        int j = 0;
+        int num = 0;
+        while (i >= 0 && j < n) {
+            if (matrix[i][j] <= mid) {
+                num += i + 1;
+                j++;
+            } else {
+                i--;
+            }
+        }
+        return num >= k;
+
+    }*/
 }
