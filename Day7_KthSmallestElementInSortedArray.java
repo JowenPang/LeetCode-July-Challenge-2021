@@ -8,7 +8,7 @@ public class Day7_KthSmallestElementInSortedArray {
     }
 
     //my solution
-    //similar to mergerSort 24ms
+    //similar to mergeSort 24ms
     public static int kthSmallest(int[][] matrix, int k) {
         int [] colIndex =new int[matrix.length]; //column index of smallest element in the ith row which haven't been visited
         int minIndex=0; //to store the row we need to update for count array
